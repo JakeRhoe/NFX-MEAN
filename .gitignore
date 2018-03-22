@@ -43,5 +43,5 @@ testem.log
 Thumbs.db
 
 #db
-/mongoDB
+/mongoDB/db/*
 /nfx-server/dbcon/*.*
