@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+
+.main-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.browse-top-margin {
+  height: 60px;
+}
+
+.searchmsg-panel {
+  padding-top: 50px;
+  width: 100%;
+  font-size: 0.8em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.msg-suggestion {
+  padding-top: 10px;
+}
+
+.msg-item {
+  padding-left: 20px;
+}

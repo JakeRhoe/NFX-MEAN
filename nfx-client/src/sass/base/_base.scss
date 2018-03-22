@@ -1,0 +1,111 @@
+html,
+body {
+  overflow: hidden;
+}
+
+html {
+  overflow-y: auto;
+}
+
+body {
+  /*font-family: "Oswald", sans-serif;*/
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  user-select: none;
+}
+
+.loading-panel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(20, 20, 20);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 1vw solid rgb(31, 31, 31);
+  border-top: 1vw solid rgb(165, 0, 0);
+  border-bottom: 1vw solid rgb(165, 0, 0);
+  border-radius: 50%;
+  width: 8vw;
+  height: 8vw;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.text-selectable {
+  user-select: text;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.img-stretch {
+  width: 100%;
+  height: auto;
+}
+
+input[type=text]::-ms-clear {
+  display: none;
+}
+
+input:-webkit-autofill {
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: 0 0 0px 1000px rgb(255, 255, 255) inset;
+  }
+}
+
+*:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.popover {
+  max-width: 552px !important;
+}
+
+.nfx-text-active:hover {
+  text-decoration: underline;
+}
+
+.nfx-cursor-pointer {
+  cursor: pointer;
+}
+
+.nfx-none-list {
+  margin: 0px;
+  padding: 0px;    
+  list-style: none;
+}
+
+.nfx-effect-fadein {
+  animation: fadein 0.3s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.inner-margin {
+  margin-left: $main-inner-margin;
+  margin-right: $main-inner-margin;
+}
+
+.fa-disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.3;
+}

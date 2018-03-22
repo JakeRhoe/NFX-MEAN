@@ -1,0 +1,31 @@
+<div class="not-found-container nfx-effect-fadein">
+  <div class="logo-item-panel">
+    <div class="logo-item nfx-cursor-pointer" 
+      [routerLink]="['/']">
+        <img class="logo-img" src="assets/image/logo.png" alt="NETFLIX CLONE"/>
+    </div>
+    <div class="message-container">
+      <div class="message-panel">
+        <div class="message-title text-nowrap">
+          Page Not Found
+        </div>
+        <div class="message-message">
+          The requested page does not exist. We will try to automatically redirect you to our home page in 10 seconds.
+          <div>&nbsp;</div>
+          <div>
+            Please go to the Netflix home page by clicking the button below.
+          </div>
+        </div>
+        <div class="btn-home-panel">
+          <button class="btn btn-home"
+            [routerLink]="['/']">
+            Netflix Home
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="login-footer">
+      <nfx-footer></nfx-footer>
+    </div>
+  </div>
+</div>

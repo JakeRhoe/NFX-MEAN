@@ -1,0 +1,22 @@
+<div class="nfx-effect-fadein main-container">
+  <!--
+  <nfx-sub-header [genreText]="titleSlideInfo?.genreText"></nfx-sub-header>
+  -->
+
+  <div class="browse-top-margin"></div>
+  
+  <nfx-titlelist
+    [genreId]="genreId"
+    (changeNumOfSlots)="onChangeNumOfSlots($event)"
+    (clickMyList)="onClickMyList($event)">
+  </nfx-titlelist>
+
+  <ng-container *ngFor="let num of numOfPages; let i = index">
+    <nfx-titlelist
+      [genreId]="genreId"
+      [titleSlideInfo]="titleSlideInfo"
+      [currentPage]="i + 1"
+      (clickMyList)="onClickMyList($event)">
+    </nfx-titlelist>
+  </ng-container>
+</div>

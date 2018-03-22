@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+
+@import 'vendors/sass-mq/mq';
+@import 'abstracts/variables';
+
+@each $key, $value in $nfx-breakpoints {
+  @include mq-add-breakpoint($key, $value);
+}

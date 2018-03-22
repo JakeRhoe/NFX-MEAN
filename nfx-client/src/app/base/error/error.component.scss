@@ -1,0 +1,103 @@
+@charset 'UTF-8';
+
+@import 'vendors/sass-mq/nfx-mq';
+
+$padding-side: 30px;
+
+.error-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(232, 232, 232);
+}
+
+.error-panel {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo-item {
+  padding: 20px $padding-side 20px $padding-side;
+  width: 100%;
+  align-self: flex-start;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgb(220, 220, 220);
+  background-color: rgb(255, 255, 255);
+
+  @include mq($until: 'xsmall') {
+    padding: 10px $padding-side 10px $padding-side;
+  }
+}
+
+.logo-img {
+  @include mq($until: 'xsmall') {
+    width: 60px;
+    height: auto;
+  }
+}
+
+.message-container {
+  position: relative;  
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(232, 232, 232);
+}
+
+.message-panel {
+  margin: 30px 100px 50px 100px;
+  padding: 30px;
+  width: 100%;
+  color: rgb(60, 60, 60);
+  border: 1px solid rgb(179, 179, 179);
+  background-color: rgb(255, 255, 255);
+
+  @include mq($until: 'xsmall') {
+    margin: 0;
+  }
+}
+
+.message-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+.message-message {
+  font-size: 0.9em;
+}
+
+.btn-home-panel {
+  padding-top: 30px;
+}
+
+.btn-home {
+  line-height: 1;
+  font-size: 1em;
+  font-weight: 600;
+  border: 1px solid rgb(178, 178, 178);
+  background-color: rgb(255, 255, 255);
+
+  &:hover {
+    background-color: rgb(230, 230, 230);
+  }
+}
+
+.login-footer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgb(232, 232, 232);
+}

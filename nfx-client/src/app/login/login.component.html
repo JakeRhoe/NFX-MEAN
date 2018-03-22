@@ -1,0 +1,96 @@
+<div class="login-bg"></div>
+
+<div class="login-container nfx-effect-fadein">
+  
+  <div class="login-panel">
+    <div class="logo-item nfx-cursor-pointer" 
+      [routerLink]="['/home']">
+        <img class="logo-img" src="assets/image/logo.png" alt="NETFLIX CLONE"/>
+    </div>
+    <div class="login-form-panel">
+      <form class="login-form"
+        (ngSubmit)="onSubmitLogin()"
+        #loginForm="ngForm">
+        <div class="form-title form-control-panel">Sign In</div>
+        <div class="form-group form-email form-control-panel">
+          <label class="form-label" for="login-email">Email</label>
+          <input type="text" class="form-control login-form-control"
+            [ngClass]="{'invalid-value':(loginEmail.invalid && (loginEmail.dirty || loginEmail.touched))}"
+            [(ngModel)]="userEmail" name="loginEmail"
+            id="login-email" #loginEmail="ngModel"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            required/>
+          <div class="form-error-msg"
+            *ngIf="loginEmail.invalid && (loginEmail.dirty || loginEmail.touched)">
+            <div *ngIf="loginEmail.errors['required']">
+              Email is required.
+            </div>
+            <div *ngIf="loginEmail.errors['pattern']">
+              Please enter a valid email address
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-pwd form-control-panel">
+          <label class="form-label" for="login-pwd">Password</label>
+          <div class="pwd-help-panel"
+            *ngIf="isFocusedPWD">
+            <div class="pwd-help-msg nfx-cursor-pointer">
+              <div *ngIf="!isVisiblePWD"
+                (click)="onClickShowPWD()">
+                Show Password
+              </div>
+              <div *ngIf="isVisiblePWD"
+                (click)="onClickHidePWD()">
+                Hide Password
+              </div>
+            </div>
+          </div>
+          <input type="password" class="form-control login-form-control"
+            [ngClass]="{'invalid-value':(loginPwd.invalid && (loginPwd.dirty || loginPwd.touched))}"
+            [(ngModel)]="userPWD" name="loginPwd"
+            (focus)="onFocusPWD()"
+            (blur)="onBlurPWD()"
+            id="login-pwd" #loginPwd="ngModel"
+            minlength="4" maxlength="60"
+            required
+            nfxSetFocus
+            #loginPWD="nfxSetFocus"
+            #loginPWDModel="ngModel"/>
+          <div class="pwd-plaintext"
+            [ngClass]="{'show-pwd':(isFocusedPWD && isVisiblePWD)}">
+            <span *ngIf="isFocusedPWD && isVisiblePWD">
+              {{loginPWDModel.value}}
+            </span>
+          </div>
+          <div class="form-error-msg"
+            *ngIf="loginPwd.invalid && (loginPwd.dirty || loginPwd.touched)">
+            <div *ngIf="loginPwd.errors['required']">
+              Password is required.
+            </div>
+            <div *ngIf="loginPwd.errors['minlength'] || loginPwd.errors['maxlength']">
+              Your password must contain between 4 and 60 characters.
+            </div>
+          </div>
+        </div>
+        <div *ngIf="(isSubmitted && !isValidAccount)"
+          class="invalid-emailpwd">
+          Email or Password is not correct.
+        </div>
+        <div class="form-submit btn-login-panel">
+          <button type="submit" class="btn btn-login"
+            [disabled]="!loginForm.form.valid">
+            Sign In
+          </button>
+        </div>
+        <div class="remember-panel">
+          <input type="checkbox" id="chk-remember" name="chkRemember" class="chk-remember" checked="checked" [(ngModel)]="rememberMe"/>
+          <label for="chk-remember" class="lb-remember elegant">Remember me</label>
+        </div>
+      </form>
+    </div>
+    <div class="login-footer">
+      <nfx-footer></nfx-footer>
+    </div>
+  </div>
+  
+</div>

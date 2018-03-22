@@ -1,0 +1,61 @@
+@charset 'UTF-8';
+
+@function getTitleSlideItemWidth($from: false, $until: false) {
+  @if ($from == false and $until == false) {
+    @return 15.5vw;
+  }
+
+  @if ($from == false and $until == 'xsmall') {
+    @return 44.5vw;
+  } @else if ($from == 'xsmall' and $until == 'small') {
+    @return 30.4vw;
+  } @else if ($from == 'small' and $until == 'medium') {
+    @return 23vw;
+  } @else if ($from == 'medium' and $until == 'large') {
+    @return 18.5vw;
+  }  
+
+  @return 0;
+}
+
+@function getTitleSlideItemHeight(
+  $from: false,
+  $until: false,
+  $showBigTitle: false
+  ) {
+  @if ($from == false and $until == false) {
+    @if ($showBigTitle == true) {
+      @return 30vw;
+    } @else {
+      @return 8.5vw;
+    }
+  }
+
+  @if ($from == false and $until == 'xsmall') {
+    @if ($showBigTitle == true) {
+      @return 88vw;
+    } @else {
+      @return 24.8vw;
+    }    
+  } @else if ($from == 'xsmall' and $until == 'small') {
+    @if ($showBigTitle == true) {
+      @return 59.8vw;
+    } @else {
+      @return 16.8vw;
+    }    
+  } @else if ($from == 'small' and $until == 'medium') {
+    @if ($showBigTitle == true) {
+      @return 45vw;
+    } @else {
+      @return 12.8vw;
+    }    
+  } @else if ($from == 'medium' and $until == 'large') {
+    @if ($showBigTitle == true) {
+      @return 36vw;
+    } @else {
+      @return 10.1vw;
+    }
+  }
+
+  @return 0;
+}

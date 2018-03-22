@@ -1,0 +1,157 @@
+<div class="nfx-effect-fadein slider-margin-bottom">
+  <div class="slider-header inner-margin">
+    <div class="slider-title"
+      [ngClass]="{'theme-dark':!isKidProfile(), 'theme-light':isKidProfile()}"
+      (click)="onClickTitle()">
+      {{titleSlideInfo?.genreText}}
+    </div>
+    <div class="slider-navigator"
+      *ngIf="(isSliderNavBtnHover && (isVisibleNavLeft || isVisibleNavRight))">
+      <div class="slider-page"
+        *ngFor="let pageItem of arrPage"
+        [ngClass]="{'current':pageItem}">
+      </div>
+    </div>
+  </div>
+  
+  <div class="slider-list-panel"
+    [ngClass]="{'nav-effect':isNavEffect}"
+    #titleSliderPanel>
+    <div class="slider-list"
+      [ngClass]="{
+        'left-align':isLeftAlign,
+        'right-align':isRightAlign,
+        'show-bigtitle':showBigTitleUI,
+        'bigtitle-effect':bigTitleEffect
+      }">
+      <ng-container nfxTitleSlideItem
+        [hoverDelay]="500"
+        [navEffectDelay]="800">
+      </ng-container>
+    </div>
+  </div>
+  
+  <div class="slider-navbtn-container"
+    [ngClass]="{'show-bigtitle':showBigTitleUI}">
+    <div class="slider-navbtn-panel"
+      [ngClass]="{'show-bigtitle':showBigTitleUI}"
+      (mouseenter)="onMouseEnterSliderNavBtn()"
+      (mouseleave)="onMouseLeaveSliderNavBtn()">
+      <div class="slider-navbtn left"
+        [ngClass]="{'show':isVisibleNavLeft, 'nfx-cursor-pointer':isVisibleNavLeft}"
+        (click)="onClickNavLeft()">
+        <i class="fas fa-chevron-left fa-2x"></i>
+      </div>
+      <div class="slider-navbtn right"
+        [ngClass]="{'show':isVisibleNavRight, 'nfx-cursor-pointer':isVisibleNavRight}"
+        (click)="onClickNavRight()">
+        <i class="fas fa-chevron-right fa-2x"></i>
+      </div>
+    </div>
+  </div>
+  
+  <div class="item-collapse-panel"
+    [ngClass]="{
+      'show':showItemCollapseUI,
+      'theme-dark':!isKidProfile(),
+      'theme-light':isKidProfile()
+    }">
+    <img class="overview-img"
+      *ngIf="imgOverviewFront"
+      [src]="'assets/image/title-image/' + imgOverviewFront"/>
+    <img class="overview-img-behind"
+      *ngIf="imgOverviewBehind"
+      [ngClass]="{'hidden':showFrontImgOverview}"
+      [src]="'assets/image/title-image/' + imgOverviewBehind"/>
+
+
+    <div class="overview-bg"></div>
+    <div class="overview-panel">
+      <div class="overview-desc">
+        <div class="desc-title">{{selectedSlideItem?.title}}</div>
+        <div class="desc-panel">
+          <span class="desc-new" *ngIf="selectedSlideItem?.isNewTitle">New</span>
+          <span class="desc-matchrate"
+            *ngIf="!selectedSlideItem?.isNewTitle">
+            {{selectedSlideItem?.matchRate}}% Match
+          </span>
+          <span>&nbsp;{{selectedSlideItem?.openYear}}&nbsp;</span>
+          <span class="desc-ratingguide">{{selectedSlideItem?.ratingGuide}}</span>
+          <span>&nbsp;{{overviewRunningTime}}</span>
+        </div>
+        <div class="desc-synopsis">{{selectedSlideItem?.synopsis}}</div>
+        <div class="desc-etc">
+          <span class="desc-subject">Starring:&nbsp;</span>
+          <span class="desc-content"
+            *ngFor="let starring of selectedSlideItem?.starring; let i = index">
+            {{starring}}<ng-container *ngIf="i < (selectedSlideItem?.starring.length - 1)">,</ng-container>
+          </span>
+        </div>
+        <div *ngIf="selectedSlideItem?.director && selectedSlideItem?.director.length > 0"
+          class="desc-etc">
+          <span class="desc-subject">Director&nbsp;</span>
+          <span class="desc-content"
+            *ngFor="let director of selectedSlideItem?.director; let i = index">
+            {{director}}<ng-container *ngIf="i < (selectedSlideItem?.director.length - 1)">,</ng-container>
+          </span>
+        </div>
+        <div *ngIf="selectedSlideItem?.creator && selectedSlideItem?.creator.length > 0"
+          class="desc-etc">
+          <span class="desc-subject">Creator&nbsp;</span>
+          <span class="desc-content"
+            *ngFor="let creator of selectedSlideItem?.creator; let i = index">
+            {{creator}}<ng-container *ngIf="i < (selectedSlideItem?.creator.length - 1)">,</ng-container>
+          </span>
+        </div>
+        <div class="desc-etc">
+          <span class="desc-subject">Genres&nbsp;</span>
+          <span class="desc-content">{{selectedSlideItem?.genres}}</span>
+        </div>
+        <div class="overview-buttons">
+          <div class="mylist-button fa-layers nfx-cursor-pointer"
+            (click)="onClickMylist()">
+            <div *ngIf="isMyList">
+              <i *ngIf="isMyList" class="far fa-check-circle fa-2x"></i>
+            </div>
+            <div *ngIf="!isMyList">
+              <i class="far fa-times-circle fa-2x" data-fa-transform="rotate-45"></i>
+            </div>
+          </div>
+          <div class="mylist-text">MY LIST</div>
+          <div class="thumbup-button fa-layers nfx-cursor-pointer">
+            <i class="far fa-circle fa-2x" data-fa-transform="left-0"></i>
+            <i class="far fa-hand-point-up"></i>
+          </div>
+          <div class="thumbdown-button fa-layers nfx-cursor-pointer">
+            <i class="far fa-circle fa-2x" data-fa-transform="left-0"></i>
+            <i class="far fa-hand-point-down"></i>
+          </div>
+        </div>
+      </div>
+      <div class="overview-play">
+        <div class="play-button fa-layers nfx-cursor-pointer"
+          [ngClass]="{'mouse-enter':isMouseEnterPlay}"
+          (mouseenter)="onMouseEnterPlay()"
+          (mouseleave)="onMouseLeavePlay()"
+          (click)="onClickPlay()">
+          <i class="inner-circle fas fa-circle fa-2x" data-fa-transform="left-4"></i>
+          <i class="outter-circle far fa-circle fa-2x" data-fa-transform="left-4"></i>
+          <i class="fas fa-play" data-fa-transform="right-1"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="collapse-menu-panel">
+      <div class="collapse-menu">
+        OVERVIEW
+      </div>
+    </div>
+
+    <div class="close-btn-panel">
+      <div class="close-btn nfx-cursor-pointer"
+        (click)="onCloseItemCollapse()">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+  </div>
+</div>

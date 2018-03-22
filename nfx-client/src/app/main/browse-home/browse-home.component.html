@@ -1,0 +1,89 @@
+<div class="nfx-effect-fadein">
+  <div class="home-title-bg">
+    <video *ngIf="homeTitleItem"
+      class="img-stretch title-clip-video"
+      [ngClass]="{'show':!isEndedVideoClip()}"
+      [src]="'assets/image/browse-home/' + homeTitleItem?.homeClipVideo"
+      [muted]="isMuted"
+      (error)="onEndedVideoClip()"
+      (ended)="onEndedVideoClip()"
+      #videoPlayer>
+    </video>
+    <!--
+    <iframe #ytPlayer
+      style="position:absolute; width:100%; height:56vw"
+      src="https://www.youtube.com/embed/HxtLlByaYTc?enablejsapi=1&autoplay=1&controls=0&end=10&rel=0"
+      frameborder="0" allow="autoplay; encrypted-media"
+      (ytPlayer.onended)="onEndedVideoClip()">
+    </iframe>
+    -->
+    <img *ngIf="homeTitleItem"
+      class="img-stretch title-clip-img"
+      [ngClass]="{'show':homeTitleItem && isEndedVideoClip()}"
+      [src]="'assets/image/browse-home/' + homeTitleItem?.homeClipImg"
+      alt="home-title"/>
+    <div class="clip-bottom-bg"
+      [ngClass]="{
+        'theme-dark':!isKidProfile(),
+        'theme-light':isKidProfile()
+      }">
+    </div>
+    
+    <div class="mute-button nfx-cursor-pointer"
+      *ngIf="!isEndedVideoClip()"
+      (click)="onClickMute()">
+      <div *ngIf="!isMuted" class="fa-layers fa-fw">
+        <i class="fas fa-volume-up"></i>
+        <i class="far fa-circle fa-2x" data-fa-transform="left-3"></i>
+      </div>
+      <div *ngIf="isMuted" class="fa-layers fa-fw">
+        <i class="fas fa-volume-off"></i>
+        <i class="fas fa-ban fa-2x" data-fa-transform="left-3"></i>
+      </div>
+    </div>
+
+    <div class="rating-guide text-nowrap">
+      <div>{{homeTitleItem?.ratingGuide}}</div>
+    </div>
+    
+    <div class="home-title-panel nfx-effect-fadein inner-margin">
+      <div class="home-title-img">
+        <img *ngIf="homeTitleItem"
+          class="img-stretch" 
+          [src]="'assets/image/browse-home/' + homeTitleItem?.homeTitleDescImg"
+          alt="home-title-desc"/>          
+      </div>
+      <div *ngIf="homeTitleItem"
+        class="home-title-buttons text-nowrap">
+        <button type="button" 
+          class="btn title-button btn-play">
+          &#9654;&ensp;Play&ensp;
+        </button>
+        <button type="button" 
+          class="btn title-button btn-mylist"
+          (click)="onClickMyList()">
+          <ng-container *ngIf="isMyList">&#10004;</ng-container>
+          <ng-container *ngIf="!isMyList">&#10010;</ng-container>
+          &ensp;My List&ensp;
+        </button>
+      </div>
+      <div class="nfx-effect-fadein"
+        *ngIf="homeTitleItem && isEndedVideoClip()">
+        <div class="home-title-title">
+          {{homeTitleItem?.homeTitleText}}
+        </div>
+        <div class="home-title-synopsis">
+          {{homeTitleItem?.synopsis}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="title-slider-panel">    
+    <nfx-titleslider [genreId]="myListId"></nfx-titleslider>
+    <nfx-titleslider [genreId]="'1001'"></nfx-titleslider>
+    <nfx-titleslider [genreId]="'1002'"></nfx-titleslider>
+    <nfx-titleslider [genreId]="'1003'"></nfx-titleslider>
+  </div>
+
+</div>

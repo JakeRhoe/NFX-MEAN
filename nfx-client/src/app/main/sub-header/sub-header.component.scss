@@ -1,0 +1,28 @@
+@charset 'UTF-8';
+
+@import 'vendors/sass-mq/nfx-mq';
+
+.sub-header {
+  width: 100%;
+  padding: 20px 0 20px 35px;
+  font-size: 2em;
+  font-weight: 600;
+  line-height: 1;
+
+  &.fixed-top {
+    position: fixed;
+    top: 0;    
+  }
+
+  @include mq($until: 'xsmall') {
+  }
+  
+  @include mq('xsmall', 'small') {
+  }
+
+  @include mq('small', 'medium') {
+  }
+
+  @include mq('medium', 'large') {
+  }
+}

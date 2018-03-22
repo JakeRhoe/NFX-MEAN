@@ -1,0 +1,189 @@
+@charset 'UTF-8';
+
+@import 'vendors/sass-mq/nfx-mq';
+
+.home-title-bg {
+  position: relative;
+  width: 100%;
+}
+
+.title-clip-img,
+.title-clip-video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.clip-bottom-bg {
+  content: '';
+  position: absolute;
+  top: 46vw;
+  width: 100%;
+  height: 10vw;
+  
+  &.theme-dark {
+    background: linear-gradient(0deg, rgb(20, 20, 20), rgba(20, 20, 20, 0));
+  }
+  
+  &.theme-light {
+    background: linear-gradient(0deg, rgb(255, 255, 255), rgba(255, 255, 255, 0));
+  }
+}
+
+.mute-button {
+  position: absolute;
+  top: 35.4vw;
+  right: 0%;
+  height: 3vw;
+  width: 2vw;
+  font-size: 1.4vw;
+  text-align: left;
+  margin-right: 8.7vw;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2vw;
+  color: rgba(255, 255, 255, 0.5);
+  z-index: 110;
+  transition: 0.2s ease;
+
+  &:hover {
+    font-size: 1.5vw;
+    color: rgba(255, 255, 255, 1);  
+  }
+}
+
+.rating-guide {
+  position: absolute;
+  top: 35.6vw;
+  right: 0%;
+  height: 2.5vw;
+  width: 7.8vw;
+  font-size: 1.1vw;
+  font-weight: 500;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgba(50, 50, 50, 0.5);
+  color: rgb(255, 255, 255);
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 0.3vw;
+    height: 100%;
+    margin-right: 1vw;
+    background-color: rgb(201, 201, 201);
+  }
+}
+
+.home-title-panel {
+  position: absolute;
+  top: 10vw;
+  width: 33%;
+  height: 85%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  @include mq($until: 'xsmall') {
+    top: -6vw;
+    width: 70%;
+  }
+  
+  @include mq('xsmall', 'small') {
+    top: 2vw;
+    width: 53%;
+  }
+}
+
+.home-title-img {
+  height: 30%;
+
+  @include mq($until: 'xsmall') {
+    width: 48vw;
+  }
+}
+
+.home-title-buttons {
+  position: absolute;
+  margin: 1vw 0 1vw 0;
+  top: 13vw;
+  z-index: 100;
+
+  @include mq($until: 'xsmall') {
+    top: 19vw;
+  }
+  
+  @include mq('xsmall', 'small') {
+    top: 21vw;
+  }
+}
+
+.home-title-title {
+  position: absolute;
+  top: 20vw;
+  font-weight: 600;
+  font-size: 1.7vw;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(51, 51, 51);
+
+  @include mq($until: 'xsmall') {
+    top: 28vw;
+  }
+  
+  @include mq('xsmall', 'small') {
+    top: 27vw;
+  }
+}
+
+.home-title-synopsis {
+  position: absolute;
+  top: 23vw;
+  font-weight: 500;
+  font-size: 1.3vw;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(51, 51, 51);
+
+  @include mq($until: 'xsmall') {
+    top: 34vw;
+    line-height: 1;
+  }
+  
+  @include mq('xsmall', 'small') {
+    top: 30vw;
+  }
+}
+
+.title-button {
+  padding: 0.5vw 3vw 0.5vw 3vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  font-size: 1.1vw;
+  color: rgb(255, 255, 255);
+
+  &:hover {
+    background-color: rgb(200, 200, 200);
+    color: rgb(51, 51, 51);  
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;  
+  }
+}
+
+.title-slider-panel {
+  position: relative; 
+  padding-top: 44vw;
+}

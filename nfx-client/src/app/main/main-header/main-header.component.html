@@ -1,0 +1,366 @@
+<header class="navbar main-header navbar-expand-md"
+  [ngClass]="{
+    'fixed-top':true,
+    'navbar-dark theme-dark':!isKidProfile(),
+    'navbar-light theme-light':isKidProfile()
+  }">
+  <a class="navbar-brand main-header" routerLink="/">
+    <img class="brand-img main-header" src="assets/image/logo.png" alt="NETFLIX CLONE"/>
+  </a>
+
+  <div class="navbar-dropdown-browse main-header d-sm-inline-block d-md-none d-lg-none d-xl-none">
+    <div class="nfx-arrow-down nfx-cursor-pointer"
+      [ngClass]="{'theme-dark':!isKidProfile(), 'theme-light':isKidProfile()}"
+      [nfxPopover]="tmpltBrowse"
+      #poBrowse="nfxPopover"
+      placement="bottom"
+      triggers="manual"
+      tabindex="-1"
+      (click)="poBrowse.toggle()"
+      (blur)="poBrowse.close(200)"
+      (mouseleave)="poBrowse.close(200)">
+      Browse
+    </div>
+    <ng-template #tmpltBrowse>
+      <div class="nfx-popmenu browse-menu arrow-bottom nfx-effect-fadein"
+        [ngClass]="{'theme-dark':!isKidProfile(), 'theme-light':isKidProfile()}">
+        <ul class="nfx-none-list"
+          (mouseenter)="poBrowse.open()" 
+          (mouseleave)="poBrowse.close()">
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              Home
+            </a>
+          </li>
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse/genre/1003')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse/genre/1003" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              TV Shows
+            </a>
+          </li>
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse/genre/1002')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse/genre/1002" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              Movies
+            </a>
+          </li>
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse/genre/1001')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse/genre/1001" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              Originals
+            </a>
+          </li>
+          <!--
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse/genre/4')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse/genre/4" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              Recently Added
+            </a>
+          </li>
+          -->
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse/my-list')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse/my-list" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              My List
+            </a>
+          </li>
+          <li class="nfx-popitem browse-item">
+            <div [ngClass]="{'activeBar':isActive('/browse/about')}"></div>
+            <a class="nfx-popitem-link" 
+              routerLink="/browse/about" 
+              routerLinkActive="active" 
+              [routerLinkActiveOptions]="{exact:true}">
+              About
+            </a>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          Home
+        </a>
+      </li>
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse/genre/1003')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse/genre/1003" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          TV Shows
+        </a>
+      </li>
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse/genre/1002')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse/genre/1002" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          Movies
+        </a>
+      </li>
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse/genre/1001')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse/genre/1001" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          Originals
+        </a>
+      </li>
+      <!--
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse/genre/4')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse/genre/4" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          Recently Added
+        </a>
+      </li>
+      -->
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse/my-list')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse/my-list" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          My List
+        </a>
+      </li>
+      <li class="nav-item browse-item" [ngClass]="{'active':isActive('/browse/about')}">
+        <a class="nav-link browse-item" 
+          routerLink="/browse/about" 
+          routerLinkActive="active" 
+          [routerLinkActiveOptions]="{exact:true}">
+          About
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="navbar-adults">
+    <div class="navbar-search">
+      <div class="search-panel nfx-cursor-pointer"
+        [ngClass]="{
+          'show':isVisibleAdultSearch,
+          'navbar-dark theme-dark':!isKidProfile(),
+          'navbar-light theme-light':isKidProfile()
+        }">
+        <div class="search-btn" (click)="onClickAdultSearch()">
+          <i class="fas fa-search fa-lg"></i>
+        </div>
+        <input class="search-input"
+          type=text
+          #adultSearchInput
+          [(ngModel)]="searchKey"
+          [ngClass]="{'show':isVisibleAdultSearch}"
+          placeholder="Titles, people, genres"
+          (blur)="onBlurAdultSearch()"
+          [nfxSetFocus]="isVisibleAdultSearch"
+          [focusDelay]="200"
+          (keyup)="onKeyUpSearch(adultSearchInput.value)"/>
+        <div class="search-input-clear"
+          *ngIf="(isVisibleAdultSearch && searchKey !== null && searchKey.length > 0)" 
+          (click)="onClickClearSearch(); adultSearchInput.focus()">
+            <i class="fas fa-times-circle"></i>
+        </div>
+      </div>  
+    </div>
+
+    <!--
+    <div class="navbar-kids-link nfx-text-active nfx-cursor-pointer"
+      (click)="setKidProfile(true)">
+      KIDS
+    </div>
+    -->
+
+    <div class="navbar-alert nfx-cursor-pointer" 
+      [nfxPopover]="tmpltAlert"
+      #poAlert="nfxPopover"
+      placement="bottom-right"
+      triggers="manual"
+      tabindex="-1"
+      (click)="poAlert.toggle()"
+      (mouseleave)="poAlert.close(200)">
+      <div class="alert-btn">
+        <span class="fa-layers fa-fw">
+          <i class="fas fa-bell fa-lg"></i>
+          <span *ngIf="newTitleList && (newTitleList.length > 0)"
+            class="fa-layers-counter">
+            {{newTitleList?.length}}
+          </span>
+        </span>
+      </div>
+      
+      <ng-template #tmpltAlert>
+        <div class="nfx-popmenu alert-menu arrow-bottom-right nfx-effect-fadein nfx-cursor-pointer"
+          [ngClass]="{'theme-dark':!isKidProfile(), 'theme-light':isKidProfile()}">
+          <ul class="nfx-none-list" style="overflow: auto;"
+            tabindex="-1"
+            [nfxSetFocus]="poAlert.isOpen"
+            (mouseenter)="poAlert.open()"
+            (mouseleave)="poAlert.close()"
+            (blur)="poAlert.close(200)">
+            <li class="nfx-popitem alert-item"
+              *ngFor="let titleSlideItem of newTitleList">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/' + titleSlideItem?.imgFilename + ')'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc top-desc">New Arrival</p>
+                <p class="title-desc">{{titleSlideItem?.title}}</p>
+                <p class="title-date">{{getFromDate(titleSlideItem?.regDate)}}</p>
+              </div>
+            </li>
+            <!--
+            <li class="nfx-popitem alert-item">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/3de911b36aef901167a63b71984b2db673511e1b.jpg)'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc">New Arrival</p>
+                <p class="title-desc">Devilman Crybaby</p>
+                <p class="title-date">2 weeks ago</p>
+              </div>
+            </li>
+            <li class="nfx-popitem alert-item">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/1348a4890d0a9b4c89583873092b4802fbbe7025.jpg)'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc">New Arrival</p>
+                <p class="title-desc">Devilman Crybaby</p>
+                <p class="title-date">2 weeks ago</p>
+              </div>
+            </li>
+            <li class="nfx-popitem alert-item">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/da3bc791a39e8e154d436c125a168ed29480135f.jpg)'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc">New Arrival</p>
+                <p class="title-desc">Devilman Crybaby</p>
+                <p class="title-date">2 weeks ago</p>
+              </div>
+            </li>
+            <li class="nfx-popitem alert-item">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/0956e8eb93453133e6ddb0143d14dfd6ff0acaa9.jpg)'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc">New Arrival</p>
+                <p class="title-desc">Devilman Crybaby</p>
+                <p class="title-date">2 weeks ago</p>
+              </div>
+            </li>
+            <li class="nfx-popitem alert-item">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/970510d6b51be30fc4210a81f2156326a060659c.jpg)'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc">New Arrival</p>
+                <p class="title-desc">Devilman Crybaby</p>
+                <p class="title-date">2 weeks ago</p>
+              </div>
+            </li>
+            <li class="nfx-popitem alert-item">
+              <div class="alert-title-img"
+                [ngStyle]="{'background-image': 'url(assets/image/title-image/f155e2eb271842faff9ba5a82580adb2fa7b42b8.jpg)'}">
+              </div>
+              <div class="alert-title-panel">
+                <p class="title-desc">New Arrival</p>
+                <p class="title-desc">Devilman Crybaby</p>
+                <p class="title-date">2 weeks ago</p>
+              </div>
+            </li>
+            -->
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+        
+    <div class="navbar-profile nfx-arrow-down nfx-cursor-pointer"
+      [ngClass]="{'theme-dark':!isKidProfile(), 'theme-light':isKidProfile()}"
+      [nfxPopover]="tmpltProfile"
+      #poProfile="nfxPopover"
+      placement="bottom-right"
+      triggers="manual"
+      tabindex="-1"
+      (click)="poProfile.toggle()"
+      (blur)="poProfile.close(200)"
+      (mouseleave)="poProfile.close(200)">
+      <i class="fas fa-user-secret nfx-fa-profile-icon"></i>
+      <ng-template #tmpltProfile>
+        <div class="nfx-popmenu profile-menu arrow-bottom-right nfx-effect-fadein"
+          [ngClass]="{'theme-dark':!isKidProfile(), 'theme-light':isKidProfile()}"
+          (mouseenter)="poProfile.open()" 
+          (mouseleave)="poProfile.close()">
+          <ul class="nfx-none-list" style="padding-top:10px;">
+            <li class="profile-item">
+              <div class="profile-icon">
+                <i class="fas fa-user-secret nfx-fa-profile-icon"></i>
+              </div>
+              <div class="profile-name nfx-text-active nfx-cursor-pointer"
+                (click)="setKidProfile(false)">
+                {{userNick}}
+              </div>
+            </li>
+            <li class="profile-item">
+              <div class="profile-icon">
+                <div class="profile-kids-icon"></div>
+              </div>
+              <div class="profile-name nfx-text-active nfx-cursor-pointer"
+                (click)="setKidProfile(true)">
+                Kids
+              </div>
+            </li>
+          </ul>
+          <!--
+          <div class="profile-title nfx-text-active nfx-cursor-pointer">
+            Manage Profiles
+          </div>
+          -->
+          <div class="profile-separator"></div>
+          <div class="profile-title nfx-text-active nfx-cursor-pointer"
+            (click)="onClickAccount()">
+            Account
+          </div>
+          <div class="profile-title nfx-text-active nfx-cursor-pointer">
+            Help Center
+          </div>
+          <div class="profile-title nfx-text-active nfx-cursor-pointer"
+            (click)="onClickSignOut()">
+            Sign out of Netflix
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="navbar-kids"></div>
+  
+</header>
+
+<div [ngClass]="isActive('/browse') ? 'header-spacing' : ''"></div>

@@ -1,0 +1,82 @@
+<div class="signup-container nfx-effect-fadein theme-gray">
+  <div class="signup-panel">
+    <div class="logo-item nfx-cursor-pointer" 
+      [routerLink]="['/home']">
+      <img class="logo-img" src="assets/image/logo.png" alt="NETFLIX CLONE"/>
+    </div>
+    <div class="signup-form-panel">
+      <form class="signup-form"
+        (ngSubmit)="onSubmitSignup()"
+        #singupForm="ngForm">
+        <div class="signup-title">
+          Create your account
+        </div>
+        <div class="signup-email-panel">
+          <input type="text" class="form-control signup-form-control"
+            [ngClass]="{'invalid-value':((signupEmail.invalid || isExistEmail) && (signupEmail.dirty || signupEmail.touched))}"
+            [(ngModel)]="userEmail" name="signupEmail"
+            id="signup-email" #signupEmail="ngModel"
+            nfxSetFocus #signupEmailFocus="nfxSetFocus"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            (focus)="onFocusedEmail()"
+            (blur)="onBluredEmail()"
+            (keyup)="isExistEmail=false"
+            required/>
+          <div class="form-error-msg"
+            *ngIf="((signupEmail.invalid || isExistEmail) && (signupEmail.dirty || signupEmail.touched))">
+            <div *ngIf="signupEmail.errors && signupEmail.errors['required']">
+              Email is required.
+            </div>
+            <div *ngIf="signupEmail.errors && signupEmail.errors['pattern']">
+              Please enter a valid email address
+            </div>
+            <div *ngIf="isExistEmail && !signupEmail.errors">
+              That email is taken. Try another.
+            </div>
+          </div>
+          <div class="signup-placeholder"
+            [ngClass]="{'focused':(isFocusedEmail || signupEmail.value)}"
+            (click)="signupEmailFocus.setFocus()">
+            Email
+          </div>
+        </div>
+
+        <div class="signup-pwd-panel">
+          <input type="text" class="form-control signup-form-control"
+            [ngClass]="{'invalid-value':(signupPwd.invalid && (signupPwd.dirty || signupPwd.touched))}"
+            [(ngModel)]="userPWD" name="signupPwd"
+            id="signup-pwd" #signupPwd="ngModel"
+            nfxSetFocus #signupPwdFocus="nfxSetFocus"
+            minlength="4" maxlength="60"
+            (focus)="onFocusedPWD()"
+            (blur)="onBluredPWD()"
+            required/>
+          <div class="form-error-msg"
+            *ngIf="signupPwd.invalid && (signupPwd.dirty || signupPwd.touched)">
+            <div *ngIf="signupPwd.errors['required']">
+              Password is required.
+            </div>
+            <div *ngIf="signupPwd.errors['minlength'] || signupPwd.errors['maxlength']">
+              Your password must contain between 4 and 60 characters.
+            </div>
+          </div>
+          <div class="signup-placeholder"
+            [ngClass]="{'focused':(isFocusedPWD || signupPwd.value)}"
+            (click)="signupPwdFocus.setFocus()">
+            Password
+          </div>
+        </div>
+
+        <div class="form-submit btn-signup-panel">
+          <button type="submit" class="btn btn-signup"
+            [disabled]="!singupForm.form.valid || isExistEmail">
+            CREATE
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="signup-footer">
+      <nfx-footer></nfx-footer>
+    </div>
+  </div>
+</div>

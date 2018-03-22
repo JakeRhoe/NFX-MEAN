@@ -1,0 +1,35 @@
+<div class="nfx-effect-fadein main-container">
+  <div class="browse-top-margin"></div>
+
+  <div *ngIf="isShowSearchMsg"
+    class="searchmsg-panel">
+    <div class="searchmsg">
+      <div *ngIf="searchKey.length > 0">
+        Your search for "{{searchKey}}" did not have any matches.
+      </div>
+      <div *ngIf="searchKey.length < 1">
+        Please input a keyword.
+      </div>
+      <div class="msg-suggestion">Suggestion:</div>
+      <div class="msg-item">&#07;&nbsp;Try different keywords</div>
+      <div class="msg-item">&#07;&nbsp;Looking for a movie or TV show?</div>
+      <div class="msg-item">&#07;&nbsp;Try using a movie, TV show title, an actor or director</div>
+      <div class="msg-item">&#07;&nbsp;Try a genre, like comedy, romance, sports, or drama</div>
+    </div>
+  </div>
+  
+  <nfx-titlelist
+    [genreId]="genreId"
+    (changeNumOfSlots)="onChangeNumOfSlots($event)"
+    (clickMyList)="onClickMyList($event)">
+  </nfx-titlelist>
+
+  <ng-container *ngFor="let num of numOfPages; let i = index">
+    <nfx-titlelist
+      [genreId]="genreId"
+      [titleSlideInfo]="titleSlideInfo"
+      [currentPage]="i + 1"
+      (clickMyList)="onClickMyList($event)">
+    </nfx-titlelist>
+  </ng-container>
+</div>

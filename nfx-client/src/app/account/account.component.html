@@ -1,0 +1,141 @@
+<div class="account-container nfx-effect-fadein theme-gray">
+  <div class="account-panel">
+    <div class="logo-item nfx-cursor-pointer" 
+      [routerLink]="['/']">
+      <img class="logo-img" src="assets/image/logo.png" alt="NETFLIX CLONE"/>
+    </div>
+    <div class="account-form-panel">
+      <form class="account-form"
+        (ngSubmit)="onSubmitAccount()"
+        #singupForm="ngForm">
+        <div class="account-title">
+          Manage your account
+        </div>
+        <div class="test-msg"
+          *ngIf="isTest">
+          test@mail.com is a temporary account for test.<br/>
+          Please create new account to test this menu.
+        </div>
+        <div class="account-email-panel">
+          <input type="text" class="form-control account-form-control"
+            [ngClass]="{'invalid-value':((accountEmail.invalid || isExistEmail) && (accountEmail.dirty || accountEmail.touched))}"
+            [(ngModel)]="userEmail" name="accountEmail"
+            id="account-email" #accountEmail="ngModel"
+            nfxSetFocus #accountEmailFocus="nfxSetFocus"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            (focus)="onFocusedEmail()"
+            (blur)="onBluredEmail()"
+            (keyup)="isExistEmail=false"
+            [disabled]="isUpdated"
+            required/>
+          <div class="form-error-msg"
+            *ngIf="((accountEmail.invalid || isExistEmail) && (accountEmail.dirty || accountEmail.touched))">
+            <div *ngIf="accountEmail.errors && accountEmail.errors['required']">
+              Email is required.
+            </div>
+            <div *ngIf="accountEmail.errors && accountEmail.errors['pattern']">
+              Please enter a valid email address
+            </div>
+            <div *ngIf="isExistEmail && !accountEmail.errors">
+              That email is taken. Try another.
+            </div>
+          </div>
+          <div class="account-placeholder"
+            [ngClass]="{'focused':(isFocusedEmail || accountEmail.value)}"
+            (click)="accountEmailFocus.setFocus()">
+            Email
+          </div>
+        </div>
+
+        <div class="account-pwd-panel">
+          <input type="password" class="form-control account-form-control"
+            [ngClass]="{'invalid-value':(accountPwd.invalid && (accountPwd.dirty || accountPwd.touched))}"
+            [(ngModel)]="userPWD" name="accountPwd"
+            id="account-pwd" #accountPwd="ngModel"
+            nfxSetFocus #accountPwdFocus="nfxSetFocus"
+            minlength="4" maxlength="60"
+            (focus)="onFocusedPWD()"
+            (blur)="onBluredPWD()"
+            [disabled]="isUpdated"
+            required/>
+          <div class="form-error-msg"
+            *ngIf="accountPwd.invalid && (accountPwd.dirty || accountPwd.touched)">
+            <div *ngIf="accountPwd.errors['required']">
+              Password is required.
+            </div>
+            <div *ngIf="accountPwd.errors['minlength'] || accountPwd.errors['maxlength']">
+              Your password must contain between 4 and 60 characters.
+            </div>
+          </div>
+          <div class="account-placeholder"
+            [ngClass]="{'focused':(isFocusedPWD || accountPwd.value)}"
+            (click)="accountPwdFocus.setFocus()">
+            Current Password
+          </div>
+        </div>
+
+        <div class="account-newpwd-panel">
+          <input type="password" class="form-control account-form-control"
+            [ngClass]="{'invalid-value':(accountNewPwd.invalid && (accountNewPwd.dirty || accountNewPwd.touched))}"
+            [(ngModel)]="userNewPWD" name="accountNewPwd"
+            id="account-newpwd" #accountNewPwd="ngModel"
+            nfxSetFocus #accountNewPwdFocus="nfxSetFocus"
+            minlength="4" maxlength="60"
+            (focus)="onFocusedNewPWD()"
+            (blur)="onBluredNewPWD()"
+            [disabled]="isUpdated"/>
+          <div class="form-error-msg"
+            *ngIf="accountNewPwd.invalid && (accountNewPwd.dirty || accountNewPwd.touched)">
+            <div *ngIf="accountNewPwd.errors['minlength'] || accountNewPwd.errors['maxlength']">
+              Your password must contain between 4 and 60 characters.
+            </div>
+          </div>
+          <div class="account-placeholder"
+            [ngClass]="{'focused':(isFocusedNewPWD || accountNewPwd.value)}"
+            (click)="accountNewPwdFocus.setFocus()">
+            New Password
+          </div>
+        </div>
+
+        <div class="form-submit btn-account-panel">
+          <button type="submit" class="btn btn-account"
+            *ngIf="!isUpdated"
+            [disabled]="!singupForm.form.valid || isExistEmail || !isConfirmedPWD">
+            UPDATE
+          </button>
+          <button type="button" class="btn btn-account"
+            *ngIf="!isUpdated"
+            [routerLink]="['/']">
+            CANCEL
+          </button>
+          <button *ngIf="isUpdated"
+            type="button" class="btn btn-home"
+            [routerLink]="['/']">
+            GO HOME ({{goHomeCount}})
+          </button>
+        </div>
+
+        <div class="btn-test-panel">
+          <button *ngIf="isTest"
+            type="button" class="btn btn-test"
+            (click)="onTest()">
+            Log out and Sign up
+          </button>
+        </div>
+
+        <div class="update-msg"
+          *ngIf="isVisibleUpdateMsg">
+          <div *ngIf="!isConfirmedPWD">
+            Current password is not correct.
+          </div>
+          <div *ngIf="isUpdated">
+            Account has been updated.
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="account-footer">
+      <nfx-footer></nfx-footer>
+    </div>
+  </div>
+</div>

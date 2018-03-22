@@ -1,0 +1,9 @@
+<div class="sub-header"
+  [ngClass]="{
+    'fixed-top':isFixedTop,
+    'theme-dark':!isKidProfile(),
+    'theme-light':isKidProfile()
+  }"
+  #subHeader>
+  {{genreText}}
+</div>

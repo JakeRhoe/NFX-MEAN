@@ -1,0 +1,47 @@
+@charset 'UTF-8';
+
+@import 'vendors/sass-mq/nfx-mq';
+
+.nfx-footer {
+    height: 200px;
+    padding: 50px;
+    color: rgb(134, 153, 153);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    width: 25px;
+    height: auto;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.logo-title {
+    color: rgb(229, 9, 20);
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.contact-info {
+    padding-top: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.contact-info-item {
+    padding: 0px 10px 10px 10px;
+    line-height: 1;
+}
+
+.contact-info-icon {
+    margin-right: 2px;
+}
+
+.contact-info-link {
+    color: rgb(134, 153, 153);
+}

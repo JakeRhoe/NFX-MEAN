@@ -1,0 +1,29 @@
+<div class="error-container nfx-effect-fadein">
+  <div class="logo-item-panel">
+    <div class="logo-item nfx-cursor-pointer" 
+      [routerLink]="['/']">
+        <img class="logo-img" src="assets/image/logo.png" alt="NETFLIX CLONE"/>
+    </div>
+    <div class="message-container">
+      <div class="message-panel">
+        <div class="message-title text-nowrap">
+          Oops! Something is wrong. [{{errorStatus}}]
+        </div>
+        <div class="message-message">
+          <div>
+            Please go to the Netflix home page by clicking the button below.
+          </div>
+        </div>
+        <div class="btn-home-panel">
+          <button class="btn btn-home"
+            [routerLink]="['/']">
+            Netflix Home
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="login-footer">
+      <nfx-footer></nfx-footer>
+    </div>
+  </div>
+</div>

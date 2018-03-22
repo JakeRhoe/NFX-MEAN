@@ -1,0 +1,130 @@
+<div class="slider-item nfx-cursor-pointer"
+  [ngClass]="{
+    'mouse-enter':isMouseEnterItem,
+    'hover-effect':!isResizing,
+    'show-bigtitle':showBigTitleUI
+  }"
+  (mouseenter)="onMouseEnterItem()"
+  (mouseleave)="onMouseLeaveItem()">
+  <img class="title-img img-stretch"
+    *ngIf="(titleSlideItem?.bigImgFileName || titleSlideItem?.imgFilename)"
+    [ngStyle]="{'display':isLoadedTitleImage ? 'inline-block' : 'none'}"
+    [ngClass]="{
+      'hidden':isMouseEnterItem,
+      'selected-item':isSelectedItem,
+      'theme-dark':!isKidProfile(),
+      'theme-light':isKidProfile()
+    }"
+    [src]="'assets/image/title-image/' + 
+    (showBigTitleUI ? titleSlideItem?.bigImgFileName : titleSlideItem?.imgFilename)"
+    (error)="isLoadedTitleImage=false"/>
+  <div *ngIf="!isLoadedTitleImage && isSetTitleSlideItem"
+    class="title-img-loading"
+    [ngClass]="{'show-bigtitle':showBigTitleUI}">
+    <div class="loading-title">{{titleText}}</div>
+  </div>
+  <div class="collapse-arrow-panel"
+    [ngClass]="{
+      'theme-dark':!isKidProfile(),
+      'theme-light':isKidProfile()
+    }"
+    *ngIf="isSelectedItem">
+  </div>
+  <div class="collapse-play-panel"
+    *ngIf="isSelectedItem">
+    <div class="play-button fa-layers"
+      [ngClass]="{'mouse-enter':isMouseEnterPlay}"
+      (mouseenter)="onMouseEnterPlay()"
+      (mouseleave)="onMouseLeavePlay()"
+      (click)="onClickPlay()">
+      <i class="inner-circle fas fa-circle fa-2x" data-fa-transform="left-4"></i>
+      <i class="outter-circle far fa-circle fa-2x" data-fa-transform="left-4"></i>
+      <i class="fas fa-play" data-fa-transform="right-1"></i>
+    </div>
+  </div>
+  <div class="rotator-panel"
+    *ngIf="isShowRotatorPanel"
+    [ngClass]="{'hidden':!isMouseEnterItem}">
+    <img class="rotator-img"
+      *ngIf="imgRotatorFront"
+      [src]="'assets/image/title-image/' + imgRotatorFront"/>
+    <img class="rotator-img-behind"
+      *ngIf="imgRotatorBehind"
+      [ngClass]="{'hidden':showFrontImgRotator}"
+      [src]="'assets/image/title-image/' + imgRotatorBehind"/>
+    <div class="control-panel">
+      <div class="control-top">
+        <div class="play-button fa-layers"
+          [ngClass]="{'mouse-enter':isMouseEnterPlay}"
+          (mouseenter)="onMouseEnterPlay()"
+          (mouseleave)="onMouseLeavePlay()"
+          (click)="onClickPlay()">
+          <i class="inner-circle fas fa-circle fa-2x" data-fa-transform="left-4"></i>
+          <i class="outter-circle far fa-circle fa-2x" data-fa-transform="left-4"></i>
+          <i class="fas fa-play" data-fa-transform="right-1"></i>
+        </div>
+      </div>
+      <div class="control-mid">
+        <div class="control-mleft"
+          [ngClass]="{'big-title':showBigTitleUI}">
+          <div class="title-panel">
+            {{titleText}}
+          </div>
+          <div class="desc-panel">
+            <span class="desc-new"
+              *ngIf="titleSlideItem?.isNewTitle">
+              New
+            </span>
+            <span class="desc-matchrate"
+              *ngIf="!titleSlideItem?.isNewTitle">
+              {{titleSlideItem?.matchRate}}% Match
+            </span>
+            <span>&nbsp;{{titleSlideItem?.openYear}}&nbsp;</span>
+            <span class="desc-ratingguide">{{titleSlideItem?.ratingGuide}}</span>
+            <span>&nbsp;{{runningTime}}</span>
+          </div>
+          <div class="synopsis-panel">{{titleSlideItem?.synopsis}}</div>
+        </div>
+        <div class="control-mright"
+          *ngIf="!showBigTitleUI">
+          <div class="thumbup-button fa-layers">
+            <i class="far fa-circle fa-2x" data-fa-transform="left-4"></i>
+            <i class="far fa-hand-point-up"></i>
+          </div>
+          <div class="thumbdown-button fa-layers">
+            <i class="far fa-circle fa-2x" data-fa-transform="left-4"></i>
+            <i class="far fa-hand-point-down"></i>
+          </div>
+          <div class="mylist-button fa-layers"
+            (click)="onClickMylist()">
+            <div *ngIf="isMyList">
+              <i class="far fa-check-circle fa-2x" data-fa-transform="left-4"></i>
+            </div>
+            <div *ngIf="!isMyList">
+              <i class="far fa-times-circle fa-2x" data-fa-transform="left-4 rotate-45"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="control-bottom">
+        <div class="item-collapse"
+          [ngClass]="{'anim':isMouseEnterItem}"
+          (click)="onClickItemCollapse()">
+          <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+        <div *ngIf="showBigTitleUI" 
+          class ="mylist-button-panel">
+          <div class="mylist-button"
+            (click)="onClickMylist()">
+            <div *ngIf="isMyList">
+              <i class="far fa-check-circle"></i>
+            </div>
+            <div *ngIf="!isMyList">
+              <i class="far fa-times-circle" data-fa-transform="rotate-45"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

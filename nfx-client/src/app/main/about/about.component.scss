@@ -1,0 +1,93 @@
+@charset 'UTF-8';
+
+$font-dark: rgb(125, 125, 125);
+$font-light: rgb(75, 75, 75);
+
+.main-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.browse-top-margin {
+  height: 60px;
+}
+
+.about-container {
+  padding: 30px;
+  width: 100%;
+
+  &.theme-dark {
+    color: $font-dark;
+  }
+  
+  &.theme-light {
+    color: $font-light;
+  }
+}
+
+.about-msg-container {
+  width: 100%;
+  height: 500px;
+  padding-top: 30px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.about-msg-panel {
+  font-size: 1em;
+  white-space: nowrap;
+  display: flex;
+  flex-flow: column nowrap;
+  border-top: 1px solid $font-dark;
+
+  &.theme-dark {
+    border-top: 1px solid $font-dark;
+  }
+  
+  &.theme-light {
+    border-top: 1px solid $font-light;
+  }
+}
+
+.about-msg-item {
+  height: 45px;
+
+  &.title {
+    height: 80px;
+    align-self: center;
+  }
+}
+
+.about-title {
+  font-size: 2em;
+  font-weight: 600;
+  text-align: center;
+  line-height: 2.5;
+  display:flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;  
+}
+
+.logo-img {
+  width: 45px;
+  padding: 0 10px 6px 0;
+}
+
+.msg-panel-line {
+  width: 100%;
+  height: 20px;
+
+  &.theme-dark {
+    border-top: 1px solid $font-dark;
+  }
+  
+  &.theme-light {
+    border-top: 1px solid $font-light;
+  }
+}

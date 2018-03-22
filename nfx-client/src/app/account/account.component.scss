@@ -1,0 +1,198 @@
+@charset 'UTF-8';
+
+@import 'vendors/sass-mq/nfx-mq';
+
+$padding-side: 30px;
+
+.account-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.account-panel {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo-item {
+  margin: 20px $padding-side 20px $padding-side;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  @include mq($until: 'xsmall') {
+    width: 60px;
+    height: auto;
+  }
+}
+
+.account-form-panel {
+  position: relative;
+  width: 370px;
+  height: 500px;
+  color: rgb(51, 51, 51);
+  flex-shrink: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.account-form {
+  width: 100%;
+}
+
+.account-form-control {
+  height: 60px;
+  padding-top: 23px;
+  border: 1px solid rgb(179, 179, 179);
+  background-color: rgb(255, 255, 255);
+
+  &:focus {
+    border: 1px solid rgb(0, 113, 235);
+  }
+
+  &.invalid-value {
+    border: 2px solid rgb(176, 5, 0);
+  }
+}
+
+.form-error-msg {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  color: rgb(198, 5, 0);
+  font-size: 0.8em;
+}
+
+.account-title {
+  font-size: 2em;
+  font-weight: 600;
+  padding: 30px 0 50px 0;
+  text-align: center;
+}
+
+.test-msg {
+  position: absolute;
+  left: 0;
+  top: 75px;
+  width: 100%;
+  height: 50px;
+  font-size: 1em;
+  text-align: center;
+  font-weight: 600;
+  color: rgb(198, 5, 0);
+}
+
+.account-email-panel {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.account-placeholder {
+  position: absolute;
+  left: 13px;
+  top: 18px;  
+  font-size: 1em;
+  color: rgb(140, 140, 140);
+  cursor: text;
+  z-index: 100;
+  transition: 0.2s ease;
+
+  &.focused {
+    left: 13px;
+    top: 6px;
+    font-size: 0.8em;
+  }
+}
+
+.account-pwd-panel {
+  position: relative;
+}
+
+.account-newpwd-panel {
+  position: relative;
+  margin-top: 30px;
+}
+
+.btn-account-panel {
+  position: absolute;
+  left: 0;
+  top: 450px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-account {  
+  width: 150px;
+  height: 50px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  background-color: rgb(229, 9, 20);
+  
+  &:hover {
+    background-color: rgb(255, 50, 60);
+  }
+}
+
+.btn-home {
+  @extend .btn-account;
+
+  width: 100%;
+}
+
+.btn-test-panel {
+  position: absolute;
+  left: 0;
+  top: 450px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-test {  
+  width: 100%;
+  height: 50px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(229, 9, 20);
+  
+  &:hover {
+    background-color: rgb(255, 50, 60);
+  }
+}
+
+.account-footer {
+  height: 100%;
+  min-height: 200px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.update-msg {
+  margin-top: 30px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1em;
+  color: rgb(198, 5, 0);
+  text-align: center;
+}
